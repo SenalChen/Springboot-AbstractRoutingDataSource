@@ -10,7 +10,6 @@ import java.util.Map;
 
 /**
  * @author ChenSijia
- * @date 2019/12/6 17:28
  */
 public class DynamicRoutingDataSource extends AbstractRoutingDataSource {
     private final Logger logger = LoggerFactory.getLogger(getClass());

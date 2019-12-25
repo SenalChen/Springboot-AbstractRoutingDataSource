@@ -5,7 +5,6 @@ import org.springframework.stereotype.Component;
 
 /**
  * @author ChenSijia
- * @date 2019/12/6 13:47
  */
 @Data
 public class Meta {

@@ -17,7 +17,6 @@ import java.util.Map;
 
 /**
  * @author ChenSijia
- * @date 2019/12/6 17:29
  */
 @Configuration
 public class DataSourceConfigurer {

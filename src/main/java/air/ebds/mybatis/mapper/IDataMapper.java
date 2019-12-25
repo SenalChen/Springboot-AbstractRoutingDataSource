@@ -9,7 +9,6 @@ import java.util.List;
 
 /**
  * @author ChenSijia
- * @date 2019/12/6 13:45
  */
 @Mapper
 public interface IDataMapper {

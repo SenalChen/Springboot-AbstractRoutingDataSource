@@ -7,7 +7,6 @@ import java.util.List;
 
 /**
  * @author ChenSijia
- * @date 2019/12/6 14:06
  */
 public interface IMetaService {
 
