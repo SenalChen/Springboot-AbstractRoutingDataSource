@@ -1,6 +1,7 @@
 package air.ebds.mybatis.entity;
 
 import lombok.Data;
+import org.springframework.stereotype.Component;
 
 /**
  * @author ChenSijia

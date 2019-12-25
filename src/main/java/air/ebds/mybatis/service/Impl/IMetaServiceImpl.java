@@ -36,4 +36,7 @@ public class IMetaServiceImpl implements IMetaService {
     public List<SelectCollection> getUserFromSecondDB() {
         return iDataMapper.getUserFromSecondDB();
     }
+
+    @DataSource(DataSourceKey.master)
+    public List<Meta> getAllFilesFromParmDB(){return iDataMapper.getFilesFromParmDB();}
 }

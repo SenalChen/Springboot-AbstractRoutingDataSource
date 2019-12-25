@@ -3,6 +3,10 @@ package air.ebds.mybatis.datasource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
+import org.springframework.stereotype.Component;
+
+import javax.sql.DataSource;
+import java.util.Map;
 
 /**
  * @author ChenSijia

@@ -49,21 +49,22 @@ public class DataSourceConfigurer {
      * @return the data source
      */
     @Bean("dynamicDataSource")
-    public DataSource dynamicDataSource() {
+    @Primary
+    public DataSource dynamicDataSource(DataSource master, DataSource second) {
         DynamicRoutingDataSource dynamicRoutingDataSource = new DynamicRoutingDataSource();
         Map<Object, Object> dataSourceMap = new HashMap<>(4);
-        dataSourceMap.put(DataSourceKey.master.name(), master());
-        dataSourceMap.put(DataSourceKey.second.name(), second());
+        dataSourceMap.put(DataSourceKey.master.name(), master);
+        dataSourceMap.put(DataSourceKey.second.name(), second);
         /*
           此处包含几种添加默认数据库连接的方式：
           1.注掉下面这个调用，在需要调用的方法中添加@DataSource注解，并且在注解中填入default值为master
           2.使用下面注解，不需要给default注解添加默认值
          */
-        dynamicRoutingDataSource.setDefaultTargetDataSource(master());
+        dynamicRoutingDataSource.setDefaultTargetDataSource(master);
         // 将 master 和 slave 数据源作为指定的数据源
         dynamicRoutingDataSource.setTargetDataSources(dataSourceMap);
         // 将数据源的 key 放到数据源上下文的 key 集合中，用于切换时判断数据源是否有效
-        DynamicDataSourceContextHolder.dataSourceKeys.addAll(dataSourceMap.keySet());
+//        DynamicDataSourceContextHolder.dataSourceKeys.addAll(dataSourceMap.keySet());
         return dynamicRoutingDataSource;
     }
 
@@ -74,17 +75,17 @@ public class DataSourceConfigurer {
      * Bean 的属性中，如果没有使用 *.xml 则可以不用该配置，否则将会产生 invalid bond statement 异常
      * @return 返回SqlSessionFactoryBean
      */
-    @Bean
-    @ConfigurationProperties(prefix = "mybatis")
-    public SqlSessionFactoryBean sqlSessionFactoryBean() {
-        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
-        sqlSessionFactoryBean.setTypeAliasesPackage("air.ebds.mybatis.mapper");
-        // 本次项目中采用注解方式，不存在xml文件，因此，忽略该行代码配置
-//        sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("mappers/**Mapper.xml"));
-        // 配置数据源，此处配置为关键配置，如果没有将 dynamicDataSource 作为数据源则不能实现切换
-        sqlSessionFactoryBean.setDataSource(dynamicDataSource());
-        return sqlSessionFactoryBean;
-    }
+//    @Bean
+//    @ConfigurationProperties(prefix = "mybatis")
+//    public SqlSessionFactoryBean sqlSessionFactoryBean() {
+//        SqlSessionFactoryBean sqlSessionFactoryBean = new SqlSessionFactoryBean();
+//        sqlSessionFactoryBean.setTypeAliasesPackage("air.ebds.mybatis.mapper");
+//        // 本次项目中采用注解方式，不存在xml文件，因此，忽略该行代码配置
+////        sqlSessionFactoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("mappers/**Mapper.xml"));
+//        // 配置数据源，此处配置为关键配置，如果没有将 dynamicDataSource 作为数据源则不能实现切换
+//        sqlSessionFactoryBean.setDataSource(dynamicDataSource());
+//        return sqlSessionFactoryBean;
+//    }
 
     /**
      * 注入 DataSourceTransactionManager 用于事务管理

@@ -2,14 +2,14 @@ spring:
   datasource:
     master:
       driver-class-name: org.postgresql.Driver
-      jdbc-url: jdbc:postgresql://localhost:5432/air
-      username: postgres
-      password: 222222
+      jdbc-url: xxxxx
+      username: xxxx
+      password: xxx
     second:
       driver-class-name: org.postgresql.Driver
-      jdbc-url: jdbc:postgresql://localhost:5432/post
-      username: postgres
-      password: 111111
+      jdbc-url: jdbc:postgresql://xxx/xxx
+      username: xxx
+      password: xxxxx
 
   aop:
     proxy-target-class: true
