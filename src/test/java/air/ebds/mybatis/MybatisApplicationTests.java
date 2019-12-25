@@ -20,6 +20,7 @@ class MybatisApplicationTests {
     void contextLoads() {
         System.out.println(iMetaService.getFilesFromParmDB().size());
         System.out.println(iMetaService.getUserFromSecondDB().size());
+        System.out.println(iMetaService.getAllFilesFromParmDB().size());
     }
 
 }
